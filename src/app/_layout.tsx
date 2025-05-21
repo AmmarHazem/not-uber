@@ -1,6 +1,6 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import "./global.css";
+import "../global.css";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -13,5 +13,14 @@ export default function RootLayout() {
     "Jakarta-SemiBold": require("../../assets/fonts/PlusJakartaSans-SemiBold.ttf"),
   });
 
-  return <Stack />;
+  if (!loaded) {
+    return null;
+  }
+
+  return (
+    <Stack initialRouteName="(auth)" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="(root)" />
+    </Stack>
+  );
 }
