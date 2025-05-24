@@ -1,16 +1,24 @@
 import { FC } from "react";
-import { Pressable, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 
-const PrimaryButton: FC<PrimaryButtonProps> = ({ text, onPress }) => {
+const PrimaryButton: FC<PrimaryButtonProps> = ({ text, leadingIcon, textClassName, className, onPress }) => {
   return (
-    <Pressable className="bg-blue-500 rounded-full px-4 py-5" onPress={onPress}>
-      <Text className="text-white text-center font-semibold">{text}</Text>
-    </Pressable>
+    <TouchableOpacity
+      activeOpacity={0.5}
+      className={`bg-blue-500 flex-row justify-center gap-4 items-center rounded-full px-4 py-5 ${className}`}
+      onPress={onPress}
+    >
+      {leadingIcon}
+      <Text className={`text-white text-lg text-center font-bold ${textClassName}`}>{text}</Text>
+    </TouchableOpacity>
   );
 };
 
 interface PrimaryButtonProps {
   text: string;
+  className?: string;
+  textClassName?: string;
+  leadingIcon?: React.ReactNode;
   onPress?: () => void;
 }
 
