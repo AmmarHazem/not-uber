@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "630039116096",
+    "project_id": "not-uber-b165a",
+    "storage_bucket": "not-uber-b165a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630039116096:android:99833244cad20b843162a5",
+        "android_client_info": {
+          "package_name": "com.ammar.notuber"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMswTlW_eSVsAscX9FmUowfSIGMJGIcNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

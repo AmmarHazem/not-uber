@@ -4,11 +4,14 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import GoogleSignInButton from "../../../src/components/GoogleSignInButton";
 import InputField from "../../../src/components/InputField";
 import PrimaryButton from "../../../src/components/PrimaryButton";
+import useFirebaseAuthStatus from "../../../src/hooks/useFirebaseAuthStatus";
 
 const SignUp: FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useFirebaseAuthStatus();
 
   const handleSignUp = useCallback(() => {}, []);
 
