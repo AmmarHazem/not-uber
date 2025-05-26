@@ -56,20 +56,6 @@ const SignUp: FC = () => {
             </Link>
           </View>
         </View>
-        {/* <Text className="w-full text-center text-neutral-400 mt-4 text-lg">{`Sign up or log in to find out the best car for you`}</Text>
-        <PrimaryButton text={"Sign Up"} className="mt-8 shadow-md" />
-        <View className="flex-row justify-center items-center gap-2 mt-4">
-          <View className="flex-1 h-[1px] bg-neutral-300" />
-          <Text>Or</Text>
-          <View className="flex-1 h-[1px] bg-neutral-300" />
-        </View>
-        <GoogleSignInButton className="mt-4" />
-        <View className="mt-8 flex-row justify-center items-center gap-2">
-          <Text>Already have an account ?</Text>
-          <TouchableOpacity>
-            <Text className="text-blue-500 font-bold"> Log In</Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </ScrollView>
   );
