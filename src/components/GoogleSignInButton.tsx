@@ -6,7 +6,7 @@ const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ className }) => {
   return (
     <PrimaryButton
       text={"Log In with Google"}
-      textClassName="text-black font-semibold"
+      textClassName="text-[#000] font-semibold"
       className={`bg-white border border-1 border-neutral-200 ${className}`}
       leadingIcon={<Image source={require("@/assets/icons/google.png")} resizeMode="contain" className="size-6" />}
     />

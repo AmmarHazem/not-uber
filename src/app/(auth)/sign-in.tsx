@@ -1,23 +1,29 @@
-import { createUserWithEmailAndPassword, getAuth } from "@react-native-firebase/auth";
-import { Link } from "expo-router";
-import { FC, useCallback, useState } from "react";
+import { Link, useRouter } from "expo-router";
+import { FC, useCallback, useMemo, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import GoogleSignInButton from "../../../src/components/GoogleSignInButton";
 import InputField from "../../../src/components/InputField";
 import PrimaryButton from "../../../src/components/PrimaryButton";
+import useFirebaseSignInWithEmail from "../../../src/hooks/useFirebaseSignInWithEmail";
 
 const SignIn: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const { loading, signIn } = useFirebaseSignInWithEmail();
 
   const handleSignIn = useCallback(async () => {
-    const result = await createUserWithEmailAndPassword(getAuth(), email, password);
-    if (result.user) {
-      console.log("User signed in successfully:", result.user);
-      // Navigate to the home screen or perform any other action
+    const result = await signIn({ email, password });
+    if (result?.uid) {
+      router.replace("/(root)/(tabs)/home");
     } else {
-      console.error("Sign in failed");
+      console.log("Sign in failed");
     }
+  }, [email, password, router, signIn]);
+
+  const disableSignIn = useMemo(() => {
+    return !email || !password;
   }, [email, password]);
 
   return (
@@ -30,6 +36,9 @@ const SignIn: FC = () => {
             label="Email"
             className="mt-8"
             value={email}
+            props={{ autoCapitalize: "none", autoCorrect: false, autoComplete: "email" }}
+            keyboardType="email-address"
+            autoFocus={true}
             placeholder="Enter your email"
             onChangeText={setEmail}
             icon={<Image resizeMode="contain" source={require("@/assets/icons/email.png")} className="size-6" />}
@@ -38,11 +47,12 @@ const SignIn: FC = () => {
             label="Password"
             className="mt-8"
             value={password}
+            password={true}
             placeholder="Enter your password"
             onChangeText={setPassword}
             icon={<Image resizeMode="contain" source={require("@/assets/icons/lock.png")} className="size-6" />}
           />
-          <PrimaryButton text={"Sign Ip"} onPress={handleSignIn} className="mt-8" />
+          <PrimaryButton loading={loading} disabled={disableSignIn} text={"Sign In"} onPress={handleSignIn} className="mt-8" />
           <GoogleSignInButton className="mt-8" />
           <View className="mt-8 flex-row justify-center items-center gap-2">
             <Text>Do not have an account ?</Text>

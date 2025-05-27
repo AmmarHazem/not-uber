@@ -1,19 +1,27 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { FC, useCallback, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import GoogleSignInButton from "../../../src/components/GoogleSignInButton";
 import InputField from "../../../src/components/InputField";
 import PrimaryButton from "../../../src/components/PrimaryButton";
-import useFirebaseAuthStatus from "../../../src/hooks/useFirebaseAuthStatus";
+import useFirebaseSignUpWithEmail from "../../../src/hooks/useFirebaseSignUpWithEmail";
 
 const SignUp: FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  useFirebaseAuthStatus();
+  const { loading, signUp } = useFirebaseSignUpWithEmail();
 
-  const handleSignUp = useCallback(() => {}, []);
+  const handleSignUp = useCallback(async () => {
+    const result = await signUp({ name, email, password });
+    if (result?.uid) {
+      router.replace("/(root)/(tabs)/home");
+    }
+  }, [email, name, password, router, signUp]);
+
+  const disableSignUp = !name || !email || !password;
 
   return (
     <ScrollView className="bg-white flex-1 w-full h-full" contentContainerStyle={{ paddingBottom: 100 }}>
@@ -24,6 +32,7 @@ const SignUp: FC = () => {
           <InputField
             label="Name"
             className="mt-8"
+            autoFocus={true}
             value={name}
             placeholder="Enter your name"
             onChangeText={setName}
@@ -32,7 +41,9 @@ const SignUp: FC = () => {
           <InputField
             label="Email"
             className="mt-8"
+            keyboardType="email-address"
             value={email}
+            props={{ autoCapitalize: "none", autoCorrect: false, autoComplete: "email" }}
             placeholder="Enter your email"
             onChangeText={setEmail}
             icon={<Image resizeMode="contain" source={require("@/assets/icons/email.png")} className="size-6" />}
@@ -45,7 +56,7 @@ const SignUp: FC = () => {
             onChangeText={setPassword}
             icon={<Image resizeMode="contain" source={require("@/assets/icons/lock.png")} className="size-6" />}
           />
-          <PrimaryButton text={"Sign Up"} onPress={handleSignUp} className="mt-8" />
+          <PrimaryButton disabled={disableSignUp} loading={loading} text={"Sign Up"} onPress={handleSignUp} className="mt-8" />
           <GoogleSignInButton className="mt-8" />
           <View className="mt-8 flex-row justify-center items-center gap-2">
             <Text>Already have an account ?</Text>
