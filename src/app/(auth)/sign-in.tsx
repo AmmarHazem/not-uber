@@ -1,3 +1,4 @@
+import { createUserWithEmailAndPassword, getAuth } from "@react-native-firebase/auth";
 import { Link } from "expo-router";
 import { FC, useCallback, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -9,7 +10,15 @@ const SignIn: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = useCallback(() => {}, []);
+  const handleSignIn = useCallback(async () => {
+    const result = await createUserWithEmailAndPassword(getAuth(), email, password);
+    if (result.user) {
+      console.log("User signed in successfully:", result.user);
+      // Navigate to the home screen or perform any other action
+    } else {
+      console.error("Sign in failed");
+    }
+  }, [email, password]);
 
   return (
     <ScrollView className="bg-white flex-1 w-full h-full" contentContainerStyle={{ paddingBottom: 100 }}>
@@ -33,7 +42,7 @@ const SignIn: FC = () => {
             onChangeText={setPassword}
             icon={<Image resizeMode="contain" source={require("@/assets/icons/lock.png")} className="size-6" />}
           />
-          <PrimaryButton text={"Sign Up"} onPress={handleSignUp} className="mt-8" />
+          <PrimaryButton text={"Sign Ip"} onPress={handleSignIn} className="mt-8" />
           <GoogleSignInButton className="mt-8" />
           <View className="mt-8 flex-row justify-center items-center gap-2">
             <Text>Do not have an account ?</Text>
