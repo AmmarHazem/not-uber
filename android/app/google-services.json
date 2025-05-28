@@ -12,7 +12,20 @@
           "package_name": "com.ammar.notuber"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "630039116096-vtgg0t502v95i7atim1hp0ia7dkmb9vd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ammar.notuber",
+            "certificate_hash": "65ff8bdbfb3b77826902d62a5854ef253fc2094c"
+          }
+        },
+        {
+          "client_id": "630039116096-gtpt03kdlmij6dltf8m7qhtnc0mlc3fh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCMswTlW_eSVsAscX9FmUowfSIGMJGIcNw"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630039116096-gtpt03kdlmij6dltf8m7qhtnc0mlc3fh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630039116096-679dvagbeaom2j63d5mabge8lkon39rh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ammar.notuber"
+              }
+            }
+          ]
         }
       }
     }
