@@ -31,6 +31,12 @@
           <string>com.ammar.notuber</string>
         </array>
       </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.630039116096-679dvagbeaom2j63d5mabge8lkon39rh</string>
+        </array>
+      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
