@@ -15,7 +15,5 @@ export default function useFirebaseAuthStatus() {
     };
   }, []);
 
-  console.log("--- useFirebaseAuthStatus", { isInitializing, user });
-
   return { isInitializing, user };
 }
