@@ -1,7 +1,16 @@
 import { FC } from "react";
-import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, StyleProp, Text, TextStyle, TouchableOpacity } from "react-native";
 
-const PrimaryButton: FC<PrimaryButtonProps> = ({ text, loading, disabled, leadingIcon, textClassName, className, onPress }) => {
+const PrimaryButton: FC<PrimaryButtonProps> = ({
+  text,
+  loading,
+  disabled,
+  leadingIcon,
+  textClassName,
+  className,
+  textStyle,
+  onPress,
+}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
@@ -16,7 +25,9 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({ text, loading, disabled, leadin
       ) : (
         <>
           {leadingIcon}
-          <Text className={`text-white text-lg text-center font-bold ${textClassName}`}>{text}</Text>
+          <Text style={textStyle} className={`text-white text-lg text-center font-bold ${textClassName}`}>
+            {text}
+          </Text>
         </>
       )}
     </TouchableOpacity>
@@ -30,6 +41,7 @@ interface PrimaryButtonProps {
   loading?: boolean;
   disabled?: boolean;
   leadingIcon?: React.ReactNode;
+  textStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
 }
 

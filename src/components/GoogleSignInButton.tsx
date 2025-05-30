@@ -1,3 +1,4 @@
+import { getAuth, GoogleAuthProvider, signInWithCredential } from "@react-native-firebase/auth";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useRouter } from "expo-router";
 import { FC, useCallback, useEffect, useState } from "react";
@@ -24,10 +25,16 @@ const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ className }) => {
       ]);
     }
     const response = await GoogleSignin.signIn();
-    if (response.type === "success") {
-      router.replace("/(root)/(tabs)/home");
+    const idToken = response.data?.idToken;
+    if (!idToken) {
+      return Alert.alert("no idToken found", undefined, [{ text: "OK", style: "default" }]);
+    }
+    const googleCredential = GoogleAuthProvider.credential(idToken);
+    const signInResult = await signInWithCredential(getAuth(), googleCredential);
+    if (signInResult.user) {
+      router.push("/home");
     } else {
-      Alert.alert("Sign In Failed", "Please try again.", [{ text: "OK", style: "default" }]);
+      return Alert.alert("Failed to sign in with Google", "Please try again", [{ text: "OK", style: "default" }]);
     }
   }, [hasPlayServices, router]);
 
@@ -37,6 +44,7 @@ const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ className }) => {
       disabled={loadingHasPlayServices}
       loading={loadingHasPlayServices}
       text={"Continue with Google"}
+      textStyle={{ color: "black" }}
       textClassName="text-black font-semibold"
       className={`bg-white border border-1 border-neutral-200 ${className}`}
       leadingIcon={<Image source={require("@/assets/icons/google.png")} resizeMode="contain" className="size-6" />}
