@@ -1,7 +1,7 @@
-import { IconSymbol } from "@/app-example/components/ui/IconSymbol";
 import { useRouter } from "expo-router";
 import { FC } from "react";
 import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { IconSymbol } from "../../../../app-example/components/ui/IconSymbol";
 import IconButton from "../../../../src/components/IconButton";
 
 const Home: FC = () => {
