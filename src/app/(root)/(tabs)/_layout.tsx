@@ -5,7 +5,25 @@ import { Image, View } from "react-native";
 
 export default function Layout() {
   return (
-    <Tabs initialRouteName="home">
+    <Tabs
+      initialRouteName="home"
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "#333333",
+          borderRadius: 50,
+          padding: 0,
+          overflow: "hidden",
+          marginHorizontal: 20,
+          marginBottom: 20,
+          height: 68,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: "row",
+          position: "absolute",
+        },
+      }}
+    >
       <Tabs.Screen
         name="home"
         options={{
@@ -13,20 +31,6 @@ export default function Layout() {
           // tabBarActiveTintColor: "white",
           // tabBarInactiveTintColor: "white",
           tabBarShowLabel: false,
-          tabBarStyle: {
-            backgroundColor: "#333333",
-            borderRadius: 50,
-            padding: 0,
-            overflow: "hidden",
-            marginHorizontal: 20,
-            marginBottom: 20,
-            height: 68,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "row",
-            position: "absolute",
-          },
           tabBarIcon(props) {
             return <TabIcon {...props} source={icons.home} />;
           },
