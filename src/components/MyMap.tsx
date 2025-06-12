@@ -5,8 +5,14 @@ import MapView from "react-native-maps";
 const MyMap: FC = () => {
   useEffect(() => {
     (async () => {
-      const locationResponse = await Location.requestForegroundPermissionsAsync();
-      console.log("Location permission response:", locationResponse);
+      const permissionResponse = await Location.requestForegroundPermissionsAsync();
+      console.log("Location permission response:", permissionResponse);
+      if (permissionResponse.status !== "granted") {
+        console.error("Permission to access location was denied");
+        return;
+      }
+      const location = await Location.getCurrentPositionAsync({});
+      console.log("Current location:", location);
     })();
   }, []);
 
