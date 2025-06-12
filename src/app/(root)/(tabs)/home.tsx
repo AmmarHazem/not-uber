@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
 import { IconSymbol } from "../../../../app-example/components/ui/IconSymbol";
 import IconButton from "../../../../src/components/IconButton";
+import MyMap from "../../../../src/components/MyMap";
 
 const Home: FC = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const Home: FC = () => {
         </View>
         <Text style={{ fontSize: 20, fontWeight: 500, paddingHorizontal: 16 }}>Your current location</Text>
         <View style={{ marginHorizontal: 16, marginVertical: 16 }}>
-          <View style={{ backgroundColor: "white", borderRadius: 16, width: "100%", height: 300 }} />
+          <MyMap />
         </View>
         <Text style={{ fontSize: 20, fontWeight: 500, paddingHorizontal: 16, marginBottom: 8 }}>Recent Rides</Text>
         <RideCard />
