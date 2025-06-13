@@ -11,7 +11,7 @@ const MyMap: FC = () => {
         console.error("Permission to access location was denied");
         return;
       }
-      const location = await Location.getCurrentPositionAsync({});
+      const location = await Location.getCurrentPositionAsync({ accuracy: Location.LocationAccuracy.High });
       console.log("Current location:", location);
     })();
   }, []);
