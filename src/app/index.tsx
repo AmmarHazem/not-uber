@@ -9,7 +9,6 @@ const SplashScreen: FC = () => {
 
   useEffect(() => {
     if (isInitializing) return;
-    console.log("SplashScreen: isInitializing", isInitializing, user);
     if (user) {
       router.replace("/(root)/(tabs)/home");
     } else {

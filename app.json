@@ -12,6 +12,9 @@
       "supportsTablet": false,
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ammar.notuber",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby places on the map."
+      },
       "config": {
         "googleMapsApiKey": "process.env.GOOGLE_MAPS_API_KEY"
       }
