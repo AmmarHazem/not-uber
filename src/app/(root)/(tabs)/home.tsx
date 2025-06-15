@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
 import { FC } from "react";
-import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import { IconSymbol } from "../../../../app-example/components/ui/IconSymbol";
 import IconButton from "../../../../src/components/IconButton";
 import MyMap from "../../../../src/components/MyMap";
+import SearchPlaceInput from "../../../../src/components/SearchPlaceInput";
 
 const Home: FC = () => {
   const router = useRouter();
@@ -17,24 +18,7 @@ const Home: FC = () => {
             <Image source={require("@/assets/icons/out.png")} style={{ width: 30 }} resizeMode="contain" />
           </IconButton>
         </View>
-        <View
-          style={{
-            marginHorizontal: 16,
-            marginTop: 16,
-            backgroundColor: "white",
-            borderWidth: 1,
-            borderColor: "#ddd",
-            flexDirection: "row",
-            gap: 8,
-            borderRadius: 30,
-            alignItems: "center",
-            paddingHorizontal: 16,
-            marginBottom: 32,
-          }}
-        >
-          <IconSymbol name="magnifyingglass" color={"black"} />
-          <TextInput style={{ paddingVertical: 16 }} placeholder="Where do you want to go ?" />
-        </View>
+        <SearchPlaceInput />
         <Text style={{ fontSize: 20, fontWeight: 500, paddingHorizontal: 16 }}>Your current location</Text>
         <View style={{ marginHorizontal: 16, marginVertical: 16 }}>
           <MyMap />
