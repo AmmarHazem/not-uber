@@ -4,6 +4,8 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { IconSymbol } from "../../app-example/components/ui/IconSymbol";
 
 const SearchPlaceInput: FC = () => {
+  console.log("process.env.GOOGLE_MAPS_API_KEY", process.env.GOOGLE_MAPS_API_KEY);
+
   return (
     <View
       style={{
@@ -25,7 +27,7 @@ const SearchPlaceInput: FC = () => {
         predefinedPlaces={[]}
         placeholder={"Search address"}
         query={{
-          key: process.env.GOOGLE_MAPS_API_KEY ?? "",
+          key: "AIzaSyCB5m-HfJAYydxdTCuju_0lzzO_WRRvQ3Q",
           language: "en",
         }}
       />

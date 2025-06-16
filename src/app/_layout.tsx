@@ -1,3 +1,5 @@
+import "react-native-get-random-values";
+
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
