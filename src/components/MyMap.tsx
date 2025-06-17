@@ -1,12 +1,12 @@
 import * as Location from "expo-location";
 import { FC, useEffect, useMemo, useState } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, StyleProp, ViewStyle } from "react-native";
 import MapView, { Marker, Region } from "react-native-maps";
 import { icons } from "../constants";
 import { drivers } from "../lib/drivers";
 import { generateMarkersFromData } from "../lib/map";
 
-const MyMap: FC = () => {
+const MyMap: FC<MyMapProps> = ({ style }) => {
   const [loading, setLoading] = useState(true);
   const [initialRegion, setInitialRegion] = useState<Region>();
 
@@ -52,7 +52,7 @@ const MyMap: FC = () => {
       zoomControlEnabled={true}
       zoomEnabled={true}
       initialRegion={initialRegion}
-      style={{ width: "100%", height: 300, borderRadius: 16 }}
+      style={[{ width: "100%", height: 300, borderRadius: 16 }, style]}
       showsUserLocation={true}
     >
       {mapDriverMarkers.map((driver) => {
@@ -68,5 +68,9 @@ const MyMap: FC = () => {
     </MapView>
   );
 };
+
+interface MyMapProps {
+  style?: StyleProp<ViewStyle>;
+}
 
 export default MyMap;
