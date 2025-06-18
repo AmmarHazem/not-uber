@@ -1,11 +1,13 @@
 import { FC } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import RideComponent from "../../../src/components/RideComponent";
 
 const FindRide: FC = () => {
   return (
-    <RideComponent>
-      <Text>FindRide</Text>
+    <RideComponent title="Ride">
+      <View className="my-3">
+        <Text>FindRide</Text>
+      </View>
     </RideComponent>
   );
 };
