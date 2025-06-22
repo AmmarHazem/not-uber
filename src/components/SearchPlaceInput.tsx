@@ -5,7 +5,6 @@ import { useRouter } from "expo-router";
 import { IconSymbol } from "../../app-example/components/ui/IconSymbol";
 
 const SearchPlaceInput: FC = () => {
-  console.log("process.env.GOOGLE_MAPS_API_KEY", process.env.GOOGLE_MAPS_API_KEY);
   const router = useRouter();
 
   return (
