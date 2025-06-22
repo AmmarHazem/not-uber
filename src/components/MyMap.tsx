@@ -2,6 +2,7 @@ import * as Location from "expo-location";
 import { FC, useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, StyleProp, ViewStyle } from "react-native";
 import MapView, { Marker, Region } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
 import { icons } from "../constants";
 import { drivers } from "../lib/drivers";
 import { generateMarkersFromData } from "../lib/map";
@@ -47,6 +48,8 @@ const MyMap: FC<MyMapProps> = ({ style }) => {
     return <ActivityIndicator />;
   }
 
+  console.log("process.env.GOOGLE_MAPS_API_KEY", process.env.GOOGLE_MAPS_API_KEY);
+
   return (
     <MapView
       zoomControlEnabled={true}
@@ -65,6 +68,19 @@ const MyMap: FC<MyMapProps> = ({ style }) => {
           />
         );
       })}
+      <MapViewDirections
+        apikey={process.env.GOOGLE_MAPS_API_KEY ?? ""}
+        strokeColor="#0286ff"
+        strokeWidth={3}
+        origin={{
+          latitude: mapDriverMarkers[0].latitude,
+          longitude: mapDriverMarkers[0].longitude,
+        }}
+        destination={{
+          latitude: mapDriverMarkers[1].latitude,
+          longitude: mapDriverMarkers[1].longitude,
+        }}
+      />
     </MapView>
   );
 };
